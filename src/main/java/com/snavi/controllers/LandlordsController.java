@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.snavi.entities.Landlord;
 import com.snavi.repositories.LandlordDAO;
-import com.snavi.validators.UserAdapter;
 import com.snavi.validators.UserDataValidator;
 
 @RestController
@@ -35,7 +34,7 @@ public class LandlordsController {
 	public ResponseEntity<Landlord> createLandlord(
 			@RequestBody(required=true) Landlord landlord)
 	{
-		int status = userDataValidator.validateUser(new UserAdapter(landlord));
+		int status = userDataValidator.validateUser(landlord);
 		
 		if (status == StatusCodes.SUCCESS_USER_CREATION)
 		{

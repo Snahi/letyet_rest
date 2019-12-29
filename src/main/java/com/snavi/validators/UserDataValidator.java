@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.snavi.controllers.StatusCodes;
+import com.snavi.entities.Landlord;
+import com.snavi.entities.Tenant;
 import com.snavi.repositories.LandlordDAO;
 import com.snavi.repositories.TenantDAO;
 
@@ -37,7 +39,7 @@ public class UserDataValidator {
 	
 	
 	
-	public int validateUser(UserAdapter user)
+	public int validateUser(Tenant user)
 	{
 		if (!isEmailValid(user.getEmail()))
 			return StatusCodes.WRONG_EMAIL;
@@ -55,6 +57,28 @@ public class UserDataValidator {
 			return StatusCodes.WRONG_PHONE;
 		if (!isUniversityValid(user.getUniversity()))
 			return StatusCodes.WRONG_UNIVERSITY;
+		
+		return StatusCodes.SUCCESS_USER_CREATION;
+	}
+	
+	
+	
+	public int validateUser(Landlord user)
+	{
+		if (!isEmailValid(user.getEmail()))
+			return StatusCodes.WRONG_EMAIL;
+		if (!isEmailUnique(user.getEmail()))
+			return StatusCodes.NON_UNQ_EMAIL;
+		if (!isFirstNameValid(user.getFirstName()))
+			return StatusCodes.WRONG_FIRST_NAME;
+		if (!isLastNameValid(user.getLastName()))
+			return StatusCodes.WRONG_LAST_NAME;
+		if (!isPasswordValid(user.getPassword()))
+			return StatusCodes.WRONG_PASSWORD;
+		if (!isBirthDateValid(user.getBirthDate()))
+			return StatusCodes.WRONG_BIRTH_DATE;
+		if (!isPhoneValid(user.getPhone()))
+			return StatusCodes.WRONG_PHONE;
 		
 		return StatusCodes.SUCCESS_USER_CREATION;
 	}
