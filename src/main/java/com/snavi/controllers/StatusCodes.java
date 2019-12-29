@@ -14,4 +14,7 @@ public interface StatusCodes {
 	static final int WRONG_UNIVERSITY 		= 466;
 	static final int NON_UNQ_EMAIL			= 467;
 	static final int SUCCESS_USER_CREATION 	= HttpStatus.CREATED.value();
+	
+	// advertisement search ////////////////////////////////////////////////////////////////////////////////////
+	static final int SUCCESS_SEARCH = HttpStatus.OK.value();
 }
